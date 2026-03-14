@@ -407,12 +407,13 @@
     }
     .product-card__img {
       width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
+      height: 100%;
+      object-fit: contain;
+      background: var(--parchment);
       transition: transform .5s ease;
     }
     .product-card:hover .product-card__img { transform: scale(1.04); }
-    .product-card__img-wrap { overflow: hidden; position: relative; }
+    .product-card__img-wrap { overflow: hidden; position: relative; aspect-ratio: 4/3; width: 100%; }
     .product-card__overlay {
       position: absolute; inset: 0;
       background: rgba(44,32,16,.0);
@@ -1534,46 +1535,52 @@ const CONFIG = {
 /* ============ PRODUCTS DATA ============ */
 const PRODUCTS = [
   {
-    id: 1, name: 'Kora Pendant Shade', category: 'pendant',
-    price: 1299, mrp: 1799,
+    id: 1, name: 'Pool Lamp', category: 'floor',
+    price: 1899, mrp: 2499,
     tag: 'Bestseller', isNew: false,
-    desc: 'Open-weave bamboo pendant for living rooms. Casts a soft starburst glow.',
+    desc: 'Intricately carved pool lamp shade for living room floors. Casts a soft starburst glow.',
     color: ['#3D4A2E','#C07A30','#EFE6D8'],
+    image: 'src/_NIK9522.jpg',
   },
   {
-    id: 2, name: 'Nila Table Shade', category: 'table',
+    id: 2, name: 'Conch Lamp Shade', category: 'pendant',
     price: 899, mrp: 1199,
-    tag: 'Table', isNew: true,
-    desc: 'Compact cane-woven shade, perfect for bedside or study tables.',
+    tag: 'Pendant', isNew: true,
+    desc: 'A unique bamboo woven pendant conch shaped lampshade, perfect for wide spaces.',
     color: ['#556B3F','#8C7B6B','#F8F3EB'],
+    image: 'src/_NIK9458.jpg',
   },
   {
-    id: 3, name: 'Venu Floor Shade', category: 'floor',
+    id: 3, name: 'Volcano Floor Lamp', category: 'floor',
     price: 2199, mrp: 2999,
     tag: 'Floor', isNew: false,
-    desc: 'Tall, sculptural bamboo shade — a statement piece for any corner.',
+    desc: 'Tall, aethestic volcano style bamboo lampshade — a statement piece for any corner.',
     color: ['#2C2010','#C07A30','#D6CFC5'],
+    image: 'src/_NIK9543.jpg',
   },
   {
-    id: 4, name: 'Shola Dome Pendant', category: 'pendant',
+    id: 4, name: 'Lina Dome Pendant', category: 'pendant',
     price: 1599, mrp: 2099,
     tag: 'Pendant', isNew: true,
-    desc: 'Full dome shape with spiral weave. Rich warm light, dining room perfect.',
+    desc: 'Elegant dome shape with spiral weave. Rich warm light, dining room perfect.',
     color: ['#4A5D3A','#D9943E','#EFE6D8'],
+    image: 'src/_NIK9418.jpg',
   },
   {
-    id: 5, name: 'Kora Mini Table', category: 'table',
+    id: 5, name: 'Monk Table Lamp', category: 'table',
     price: 699, mrp: 999,
     tag: 'Table', isNew: false,
-    desc: 'Petite bamboo table shade with tight hexagonal cane pattern.',
+    desc: 'Petite bamboo table shade with unique flowing zen pattern.',
     color: ['#3D4A2E','#8C7B6B','#F8F3EB'],
+    image: 'src/_NIK9477.jpg',
   },
   {
-    id: 6, name: 'Aruna Cluster Set', category: 'pendant',
-    price: 3499, mrp: 4599,
+    id: 6, name: 'Monk Mini Table Lamp', category: 'table',
+    price: 3499, mrp: 2599,
     tag: 'Set of 3', isNew: true,
-    desc: 'A trio of staggered bamboo pendants for dramatic kitchen islands.',
+    desc: 'A trio of Monk table lamps, with in-built light for all your desk work.',
     color: ['#2C2010','#C07A30','#EFE6D8'],
+    image: 'src/_NIK9462.jpg',
   },
 ];
 
@@ -1806,7 +1813,7 @@ function renderProducts(filter = 'all') {
     <div class="product-card" data-category="${p.category}">
       ${p.isNew ? '<div class="product-card__badge-new">New</div>' : ''}
       <div class="product-card__img-wrap">
-        <div class="lamp-placeholder">${lampSVG(p.color, p.category)}</div>
+        ${p.image ? `<img src="${p.image}" class="product-card__img" alt="${p.name}">` : `<div class="lamp-placeholder">${lampSVG(p.color, p.category)}</div>`}
         <div class="product-card__overlay">
           <button class="product-card__quick-add" onclick="addToCart(${p.id})">Quick Add</button>
         </div>
